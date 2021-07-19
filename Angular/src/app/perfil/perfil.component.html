@@ -1,0 +1,55 @@
+
+    
+    <div class="card" id="carta" *ngIf="logeado">
+        <div class="card-img-top ml-3"><h1>Perfil de {{datos['nombre']}}</h1></div>
+        <div class="card-body">
+            <h5 class="card-title">Nombre: {{datos['nombre']}}, {{datos['apellidos']}}</h5>
+            <h5 class="card-title">Domicilio: {{datos['direccion']}}</h5>
+            <h5 class="card-text">Correo Electrónico: {{datos['email']}}</h5>
+            <button class="btn-danger col-md-4" style="margin: 1%;" (click)="getAllPedidos()">Mostrar Pedidos</button>
+            <button class="btn-danger col-md-4 ml-3" style="margin: 1%;" (click)="llamadasDeseo()">Lista Deseos</button>
+            <div *ngIf="arrPedidosTodos.length > 0">
+                <div class="table table-bordered">                
+                        <thead>
+                            <tr>
+                                <th scope="col">ID Pedido</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Comprado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pedido of arrPedidosTodos">
+                                <td>{{pedido.idPedido}}</td>
+                                <td>{{pedido.fecha}}</td>
+                                <td>
+                                    <div *ngIf="pedido.comprado == true">
+                                        <p>Si</p>
+                                    </div>
+                                    <div *ngIf="pedido.comprado == false">
+                                        <p>No</p>
+                                    </div>
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </div>
+            </div>
+            <div *ngIf="juegosList.length > 0">
+                <div class="table table-bordered">                
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre Juego</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pedido of juegosList">
+                                <td>{{pedido.nombreProducto}}</td>
+                                <td><button type="button" class="btn btn-success" (click)="llamadasDetallePedido(pedido.idProducto)"><i class="fas fa-shopping-cart"></i></button></td>
+                                <td><button type="button" class="btn btn-danger" (click)="deleteDeseo(pedido.idProducto)"><i class="fas fa-trash"></i></button></td>                             
+                            </tr>
+                        </tbody>
+                    </div>
+            </div>
+        </div>                
+    </div>
+
+

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Alejandro\Desktop\tmp</_PublishTargetUrl>
+    <History>True|2021-06-17T14:53:16.8731489Z;True|2021-05-27T19:54:41.9204923+02:00;True|2021-05-17T19:59:57.9045034+02:00;True|2021-05-17T18:13:10.9958353+02:00;True|2021-05-16T19:50:49.1650534+02:00;True|2021-05-16T19:38:02.4380760+02:00;True|2021-05-11T11:12:23.1725890+02:00;True|2021-05-11T10:27:34.4822322+02:00;True|2021-05-11T10:23:23.1639155+02:00;True|2021-05-10T20:35:18.4759750+02:00;</History>
+  </PropertyGroup>
+</Project>

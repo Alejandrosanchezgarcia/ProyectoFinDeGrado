@@ -1,0 +1,66 @@
+<div class="container-fliud" id="mid">
+    <input type="text" class="form-control col-md-2" placeholder="Buscar VideoJuegos..." id="buscador"
+        [(ngModel)]="busquedaInput"><br>
+    <button type="submit" class="btn-success col-md-1" (click)="llamadasBuscar()" id="boton">Buscar</button>
+    <div class="table">
+        <div class="row">
+            <div *ngIf="datos['nombre'] != null">
+                <div class="card" style="width: 20%;" id="carta">
+                    <div class="card-img-top"><img src="{{datos['imagen']}}" id="caratula"></div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{datos['nombre']}}</h5>
+                        <p class="card-text">Precio: {{datos['precio']}} €</p>
+                        <p class="card-text">Descripción: <br>{{datos['descripcion']}}</p>
+                        <p class="card-text"><input type="number" id="cantidad" name="cantidad" min="0" max="{{datos['stock']}}" placeholder="cantidad" [(ngModel)]="cantidad"></p>
+                    </div>
+                </div>
+                <button class="btn-danger col-md-1" id="comprar" (click)="llamadasDetallePedido(datos['idProducto'])"><i class="fas fa-shopping-cart"></i></button>
+                <button class="btn-success col-md-1" id="deseo" (click)="createListaDeseos(datos['idProducto'])"><i class="fas fa-heart"></i></button>
+            </div>
+
+        </div>
+    </div> 
+    <div *ngIf="valoracionEncontrada == true && arrayValoracions.length >= 1" class="col-md-9" id="valoraciones">
+        <div class="table  col-md-12" id="tabla">
+            <thead id="cabecera">
+                <tr>
+                    <th scope="col">Comentario</th>
+                    <th scope="col">Valoración</th>
+                    <th scope="col">Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let valoracion of arrayValoracions" style="margin: 5%;" class="col-md-12">
+                    <td class="col-md-2">{{valoracion.comentario}}</td>
+                    <td class="col-md-2">{{valoracion.puntuacion}}/5</td>
+                    <div class="col-md-6" *ngFor="let us of arrUsers">
+                        <td *ngIf="valoracion.idUsuario == us.idUsuario">{{us.nombre}}, {{us.apellidos}}</td>
+                    </div>                    
+                </tr>
+            </tbody>
+        </div>
+    </div>
+    <div *ngIf="valoracionEncontrada == true" class="col-md-12" id="val">
+    <form class="col-md-9" id="new">        
+        <p style="color: white">Valoración</p>
+        <p class="clasificacion form-group col-md-12">
+            <input id="radio1" type="radio" name="estrellas" value="5" [(ngModel)]="inputValoracion"><!--
+            --><label for="radio1">★</label><!--
+            --><input id="radio2" type="radio" name="estrellas" value="4" [(ngModel)]="inputValoracion"><!--
+            --><label for="radio2">★</label><!--
+            --><input id="radio3" type="radio" name="estrellas" value="3" [(ngModel)]="inputValoracion"><!--
+            --><label for="radio3">★</label><!--
+            --><input id="radio4" type="radio" name="estrellas" value="2" [(ngModel)]="inputValoracion"><!--
+            --><label for="radio4">★</label><!--
+            --><input id="radio5" type="radio" name="estrellas" value="1" [(ngModel)]="inputValoracion"><!--
+            --><label for="radio5">★</label>
+          </p>
+        <div class="form-group">
+          <label for="comentario" style="color: white;">Comentario:</label>
+          <textarea class="form-control col-md-2" id="comentario" name="comentario" placeholder="Escribe aquí tu comentario..." rows="10" cols="20" [(ngModel)]="inputComentario"></textarea>
+        </div>        
+        <button type="submit" class="btn btn-primary" (click)="nuevaValoracion()">Enviar</button>
+      </form>
+    </div>
+
+</div>

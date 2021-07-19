@@ -1,0 +1,56 @@
+#altaVideojuego{
+    position: relative;
+    left:10%;
+    top: 50%;
+    
+}
+#altaCategoria{
+    position: relative;
+    left: 15%;
+    top: 50%;
+}
+#usuarios{
+    position: relative;
+    left: 20%;
+    top: 50%;
+}
+#juegos{
+    position: relative;
+    left: 25%;
+    top: 50%;
+}
+
+
+#cabecera{
+    position: relative;
+    top: 20%;
+    left: 25%;
+    color: white;
+}
+#contenedor{
+    background-color: grey;
+    position: relative;
+    top: 20%;
+    left: 25%;
+    width: 1000px;
+    height: auto;
+}
+.modal-content{
+    position: relative;
+    left: -30%;
+    width: 1000px;
+    border: 5px solid tomato;
+}
+
+.modal-content input{
+    position: relative;
+    float: right;
+}
+#cats{
+    margin-left: 17.5%;
+    margin-top: 1%;
+}
+#cats1{
+    margin-left: 16.2%;
+    margin-top: 1%;
+}

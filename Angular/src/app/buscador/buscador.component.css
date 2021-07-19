@@ -1,0 +1,89 @@
+
+#buscador{
+    position: absolute;
+    top: 25%;
+    left: 40%;
+}
+
+#boton{
+    position: absolute;
+    top: 30%;
+    left: 44.5%;
+}
+
+#carta{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
+#comprar{
+    position: absolute;
+    left: 40%;
+    top: 97.5%;
+}
+#deseo{
+    position: absolute;
+    left: 48.5%;
+    top: 97.5%;
+}
+#caratula{
+    width: 40%;
+    position: relative;
+    left: 30%;
+    top: 10px;
+}
+
+#val{
+    position: absolute;
+    left: 80%;
+    top: 40%;
+}
+#nota{
+    position: relative;
+    left: -1.5%;
+}
+#valoraciones{   
+    position: absolute;
+    left: 5%;
+    top: 110%;
+
+}
+#tabla{
+    background-color: white;
+    border: 5px solid tomato;
+}
+#cabecera{
+    background-color: thistle;
+}
+
+/*Estrellas*/
+#form p {
+    text-align: center;
+  }
+  
+  #form label {
+    font-size: 20px;
+  }
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+  label {
+    color: grey;
+  }
+  
+  .clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  
+  label:hover,
+  label:hover ~ label {
+    color: orange;
+  }
+  
+  input[type="radio"]:checked ~ label {
+    color: orange;
+  }

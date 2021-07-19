@@ -1,0 +1,135 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<div *ngIf="logeado == true">
+  <div id="logeado">
+    <p>Logeado como: {{datos['email']}} </p>
+    <button type="button" class="btn btn-success" (click)="desLogearse()" id="deslogin"><i class="fas fa-sign-out-alt"></i></button>    
+    <a href="#modalCarrito" role="button" class="btn btn-large btn-primary col-md-1" (click)="carritoProductos()" id="carrito" data-toggle="modal"><i class="fas fa-shopping-cart"></i></a>
+  </div>
+  
+</div>
+<div *ngIf="logeado == false">
+  <a href="#modalLogin" role="button" class="btn btn-large btn-success col-md-1" id="login" data-toggle="modal">Login</a>
+</div>
+<div id="modalLogin" class="modal fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Login</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+          </div>
+          <div class="modal-body">         
+            <label for="correoLogin">Correo: </label>
+            <input type="text" class="col-md-9 ml-5" id="correoLogin" name="correoLogin" [(ngModel)]="busquedaInputCorreo" required><br>
+            <label for="passLogin">Contraseña: </label>
+            <input type="password" class="col-md-9 ml-3" id="passLogin" name="passLogin" [(ngModel)]="busquedaInputPass" required><br>  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="llamadasLogin()" data-dismiss="modal">Entrar</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="logeado == false">
+  <a href="#modalRegistro" role="button" class="btn btn-large btn-success col-md-1" id="registro" data-toggle="modal">¿Eres nuevo?</a><!-- Botón en HTML (lanza el modal en Bootstrap) --> 
+</div>
+  <!-- Modal / Ventana / Overlay en HTML -->
+<div id="modalRegistro" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Registro</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+            </div>
+            <div class="modal-body">
+              <label for="nombre">Nombre: </label>
+              <input type="text" class="col-md-9" id="nombre" name="nombre" [(ngModel)]="inputNombre" required><br>
+              <label for="apellidos">Apellidos: </label>
+              <input type="text" class="col-md-9" id="apellidos" name="apellidos" [(ngModel)]="inputApellidos" required><br>
+              <label for="correo">Correo: </label>
+              <input type="text" class="col-md-9" id="correo" name="correo" [(ngModel)]="inputCorreo" required><br>
+              <label for="pass">Contraseña: </label>
+              <input type="password" class="col-md-9" id="pass" name="pass" [(ngModel)]="inputPassword" required><br>
+              <label for="pass2">Repita Contraseña: </label>
+              <input type="password" class="col-md-9" id="pass2" name="pass2" [(ngModel)]="inputPassword2" required><br>
+              <label for="direccion">Dirección: </label>
+              <input type="text" class="col-md-9" id="direccion" name="direccion" [(ngModel)]="inputDireccion" required><br>
+              <input type="checkbox" name="check" id="check" required>
+              <label for="check">Doy mi consentimiento para el uso de mis datos.</label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="llamadasRegistro()">Registrar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg" id="navbar">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a [routerLink] = "['Home']" class="nav-link col-md-1" id="enlace">Home</a>        
+      </li>
+      <li class="nav-item active">
+        <a [routerLink] = "['Videojuegos']" class="nav-link col-md-1" id="enlace" [routerLinkActive]="['activado']" >VideoJuegos</a>        
+      </li>
+      <li class="nav-item active">
+        <a [routerLink] = "['Categoria']" class="nav-link col-md-1" id="enlace" [routerLinkActive]="['activado']" >Categoría</a>       
+      </li>
+      <li class="nav-item active">
+        <a [routerLink] = "['Buscador']" class="nav-link col-md-1" id="enlace" [routerLinkActive]="['activado']" ><i class="fas fa-search"></i></a>       
+      </li>      
+      <div *ngIf="logeado == true">
+        <li class="nav-item active">
+          <a [routerLink] = "['Perfil']" class="nav-link col-md-1" id="enlace" [routerLinkActive]="['activado']" ><i class="fas fa-user"></i></a>       
+        </li>
+      </div>
+      <div *ngIf="admin == true">
+        <li class="nav-item active">
+          <a [routerLink] = "['Admin']" class="nav-link col-md-1" id="admin" [routerLinkActive]="['activado']" ><i class="fas fa-tools"></i></a>       
+        </li>
+      </div>     
+    </ul>
+  </div>
+</nav>
+<div id="modalCarrito" class="modal fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Carrito</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+          </div>
+          <div class="modal-body">                    
+              <div class="table table-bordered">                
+                  <thead>
+                      <tr>                          
+                          <th scope="col">ID Producto</th>                          
+                          
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let pedido of arrCompras">                        
+                        <td>{{pedido.nombreProducto}}</td>                    
+                        <td><button type="button" class="btn btn-danger" (click)="deleteDetalle(pedido.idProducto)" data-dismiss="modal"><i class="fas fa-trash-alt"></i></button></td>                 
+                      </tr>
+                      <p>Total a Abonar: {{precioTotal}} €</p>
+                  </tbody>
+              </div>
+            
+          </div>
+          <div class="modal-footer">              
+              <button type="button" class="btn btn-primary" (click)="comprarPedido()" data-dismiss="modal">Comprar</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

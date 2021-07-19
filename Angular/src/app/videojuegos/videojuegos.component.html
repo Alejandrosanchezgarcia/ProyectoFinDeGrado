@@ -1,0 +1,24 @@
+<div class="container-fliud" id="mid">
+    <div class="table">
+        <div class="row">
+            <div *ngFor="let producto of ProductoArray; let i = index"  style="margin: 5%;" class="col-md-2">
+                <div *ngIf="producto.stock >= 0">
+                    <div class="card" style="width: 18rem;" id="carta">
+                        <div class="card-img-top"><img src="{{producto.imagen}}" id="caratula"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{producto.nombreProducto}}</h5>
+                            <p class="card-text">Precio: {{producto.precio}} €</p>
+                            <p class="card-text">Descripción: <br>{{producto.descripcionProducto}}</p>
+                            <p class="card-text"><input type="number" id="cantidad" name="cantidad" min="0" max="{{producto.stock}}" placeholder="cantidad" [(ngModel)]="cantidad"></p>
+                            <div *ngIf="producto.stock == 0">
+                                <p class="card-text">PRODUCTO AGOTADO</p>
+                            </div>
+                        </div>                    
+                    </div> 
+                    <button class="btn-danger col-md-4" style="margin: 1%;" (click)=" llamadasDetallePedido(producto.idProducto)"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="btn-success col-md-4" style="margin: 1%;" (click)="createListaDeseos(producto.idProducto)"><i class="fas fa-heart"></i></button>                
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

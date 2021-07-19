@@ -1,0 +1,107 @@
+html, body, head{
+    background-image: url("./images/fondo.png");
+    background-attachment: fixed;
+}
+/*Elementos de la cabecera*/
+#navbar{
+    background-color: black;
+    position: relative;  
+    margin-top: 5%;
+    margin-bottom: 10%;
+   
+    font-size: 20px;
+}
+#navbar .nav-item {    
+    margin-right: 25%;
+}
+.nav-item:first-child{    
+    margin-left: 25%;
+}
+
+#buscador {
+    
+    position: absolute;
+    background-color: white;
+    top: 2%;   
+    left:55%;
+    margin-right: 1%;
+}
+#login{
+    border-radius: 5%;
+    position: absolute;
+    top: -1%;   
+    left:72%;    
+    margin:2%;
+    margin-right: 1%;
+}
+#registro{
+    border-radius: 5%;
+    position: absolute;
+    top: -1%;   
+    left:82%;    
+    margin:2%;
+    margin-right: 1%;
+}
+nav a{
+    color: wheat;
+    position: relative;
+}
+
+
+
+/*Pestaña videojuegos*/
+#carta {
+    background-color: darkcyan;
+    color: black;
+}
+
+#up{
+    margin-top: 0%;
+    margin-bottom: 0%;    
+    text-align: center;
+    color: black;
+}
+
+#filtro{
+    position: absolute;
+    background-color: white;
+    top: 6%;   
+    left:55%;
+    color: black;
+    border: 2px solid black;
+
+}
+
+#logeado{
+    position: absolute;
+    width: 500px;
+    top: -1%;   
+    left:55%;    
+    margin:2%;
+    margin-right: 1%;
+    color: white;
+}
+#deslogin{
+    position: absolute;
+    top: -1%;
+    left: 95%;
+    
+}
+#carrito{
+    position: absolute;
+    top: -2%;
+    left: 85%;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 150%;
+    pointer-events: auto;
+    background-color: red;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}

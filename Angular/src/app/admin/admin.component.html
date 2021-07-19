@@ -1,0 +1,174 @@
+
+<div id="contenedor">
+<h1 id="cabecera">Panel De Administración</h1>
+<a href="#modalAltaVideojuego" role="button" class="btn btn-large btn-success" id="altaVideojuego" data-toggle="modal">Alta Articulo</a>
+<a href="#modalAltaCategoria" role="button" class="btn btn-large btn-success" id="altaCategoria" data-toggle="modal">Crear Categoria</a>
+<button type="button" class="btn btn-success" (click)="obtnerUsuarios()" id="usuarios">Mostrar Usuarios</button>
+<button type="button" class="btn btn-success" (click)="obtenerListaJuegos()" id="juegos">Mostrar Juegos</button>
+  <div id="modalAltaVideojuego" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Dar de Alta Articulo</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+            </div>
+            <div class="modal-body">         
+              <label for="nombreVideojuego">Nombre Videojuego: </label>
+              <input type="text" class="col-md-9 ml-5" id="nombreVideojuego" name="nombreVideojuego" [(ngModel)]="inputNombreVideojuego" required><br>
+              <label for="descripVideojuego">Descripción: </label>
+              <input type="text" class="col-md-9 ml-3" id="descripVideojuego" name="descripVideojuego" [(ngModel)]="inputDescripcion" required><br>
+              <label for="stock">Stock: </label>
+              <input type="text" class="col-md-9 ml-3" id="stock" name="stock" [(ngModel)]="inputStock" required><br>
+              <label for="precio">Precio: </label>
+              <input type="text" class="col-md-9 ml-3" id="precio" name="precio" [(ngModel)]="inputPrecio" required><br>
+              <label for="cat">IdCategoria: </label>              
+              <select name="cats" id="cats1" [(ngModel)]="catSelect" class="col-md-3" (blur)="getCategoriaByName()">
+                  <option value="null">Seleccione Categoría</option>    
+                  <option *ngFor="let categoria of arrCats">{{categoria.nombreCategoria}}</option>                  
+              </select><br>
+              <label for="imagen">Imagen: </label>
+              <input type="text" class="col-md-9 ml-3" id="imagen" name="imagen" [(ngModel)]="inputImagen" required><br>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="createVideojuego()" data-dismiss="modal">Dar de Alta</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <div *ngIf="productoArray.length > 0" class="col-md-12">
+    <div class="table table-bordered col-md-12">    
+        <thead>
+          <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Modificar</th>          
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let producto of productoArray"  style="margin: 5%;" class="col-md-4">
+              <td class="col-md-2">{{producto.nombreProducto}}</td>
+              <td class="col-md-2">{{producto.descripcionProducto}}</td>
+              <td class="col-md-2">{{producto.precio}}</td>
+              <td class="col-md-2">{{producto.stock}}</td>
+              <td class="col-md-2">{{producto.idCategoria}}</td>
+              <td class="col-md-2">{{producto.imagen}}</td>
+              <td>
+                <button type="button" class="btn btn-danger"  (click)="sacarDatosJuego(producto.nombreProducto, producto.descripcionProducto, producto.precio, producto.idCategoria, producto.imagen)"><i class="fas fa-trash-alt"></i></button>
+                <a href="#modalModificarVideojuego" role="button" class="btn btn-large btn-success" id="modVideojuego" data-toggle="modal" (click)="getNameImagen(producto.nombreProducto, producto.imagen)"><i class="fas fa-bars"></i></a></td>          
+          </tr>
+      </tbody>          
+      </div>
+  </div>
+  <div id="modalModificarVideojuego" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Modificar Articulo</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+            </div>
+            <div class="modal-body">         
+              <label for="nombreModVideojuego">Nombre Videojuego: </label>
+              <input type="text" class="col-md-9 ml-5" id="nombreModVideojuego" name="nombreModVideojuego" [(ngModel)]="inputModNombreVideojuego" value="{{nameJuego}}" required><br>
+              <label for="descripModVideojuego">Descripción: </label>
+              <input type="text" class="col-md-9 ml-3" id="descripModVideojuego" name="descripModVideojuego" [(ngModel)]="inputModDescripcion" required><br>
+              <label for="stockModVideojuego">Stock: </label>
+              <input type="text" class="col-md-9 ml-3" id="stockModVideojuego" name="stockModVideojuego" [(ngModel)]="inputModStock" required><br>
+              <label for="precioModVideojuego">Precio: </label>
+              <input type="text" class="col-md-9 ml-3" id="precioModVideojuego" name="precioModVideojuego" [(ngModel)]="inputModPrecio" required><br>
+              <label for="cats">Categoría: </label>
+              <select name="cats" id="cats" [(ngModel)]="catSelect" class="col-md-3" (blur)="getCategoriaByName()">
+                <option value="null">Seleccione Categoría</option>    
+                <option *ngFor="let categoria of arrCats">{{categoria.nombreCategoria}}</option>                  
+            </select><br>
+              <label for="imagenModVideojuego">Imagen: </label>
+              <input type="text" class="col-md-9 ml-3" id="imagenModVideojuego" name="imagenModVideojuego" [(ngModel)]="inputModImagen" value="{{imagenGame}}" required><br>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="modificarJuego()" data-dismiss="modal">Modificar</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  
+  <div id="modalAltaCategoria" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Crear Categoria</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+            </div>
+            <div class="modal-body">         
+              <label for="nombreCategoria">Nombre Categoria: </label>
+              <input type="text" class="col-md-9 ml-5" id="nombreCategoria" name="nombreCategoria" [(ngModel)]="inputCatNombreCategoria" required><br>
+              <label for="descripCategoria">Descripción: </label>
+              <input type="text" class="col-md-9 ml-3" id="descripCategoria" name="descripCategoria" [(ngModel)]="inputDescripcionCategoria" required><br>           
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="createCategoria()" data-dismiss="modal">Crear</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <div *ngIf="arrUsuarios.length > 0" class="col-md-12">
+    <div class="table table-bordered col-md-12">
+      <div clas="col-md-12" style="margin-left: 27%;">  
+        <thead>
+          <tr>
+              <th scope="col-md-1">ID</th>
+              <th scope="col-md-3">Nombre</th>
+              <th scope="col-md-4">Email</th>
+              <th scope="col-md-4">Acciones</th>          
+          </tr>
+      </thead>
+      <tbody style="margin-left: 55%;">
+          <tr *ngFor="let usuario of arrUsuarios" class="col-md-12">
+              <td>{{usuario.idUsuario}}</td>
+              <td>{{usuario.nombre}}</td>
+              <td>{{usuario.email}}</td>
+              <td><button type="button" class="btn btn-danger" (click)="borrarUsuario(usuario.idUsuario)"><i class="fas fa-trash-alt"></i></button>
+                <a href="#modalModificarUsuario" role="button" class="btn btn-large btn-success" id="modUser" data-toggle="modal" (click)="pedirDatos(usuario.idUsuario, usuario.email, usuario.password)"><i class="fas fa-bars"></i></a>
+              </td>
+
+          </tr>
+      </tbody>          
+      </div>
+    </div>
+  </div>
+  <div id="modalModificarUsuario" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Modificar Usuario</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+            </div>
+            <div class="modal-body">         
+              <label for="emailUser">Email: </label>
+              <input type="text" class="col-md-9 ml-5" id="emailUser" name="emailUser" [(ngModel)]="inputEmailUser" value="{{emailMod}}"><br>
+              <label for="passwordUser">Password: </label>
+              <input type="password" class="col-md-9 ml-3" id="passwordUser" name="passwordUser" [(ngModel)]="inputPassUser" value="{{passwordMod}}"><br>
+              <label for="nombreUser">Nombre: </label>
+              <input type="text" class="col-md-9 ml-3" id="nombreUser" name="nombreUser" [(ngModel)]="inputNombreUser" required><br>
+              <label for="apellidosUser">Apellidos: </label>
+              <input type="text" class="col-md-9 ml-3" id="apellidosUser" name="apellidosUser" [(ngModel)]="inputApellidosUser" required><br>
+              <label for="direccionUser">Dirección: </label>
+              <input type="text" class="col-md-9 ml-3" id="direccionUser" name="direccionUser" [(ngModel)]="inputDireccionUser" required><br>                           
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" (click)="upUsuario()" data-dismiss="modal">Modificar</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+</div>
